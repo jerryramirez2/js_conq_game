@@ -1,0 +1,31 @@
+body {
+    background-color: black;
+}
+
+img {
+    width: 130px;
+    height: 200px;
+    border-radius: 3%;
+}
+
+.commit img {
+    width: 77.26px;
+    height: 120px;
+}
+
+#playerContainer img:hover {
+    transform: scale(1.015);
+}
+
+#playerContainer img:active {
+    transform: scale(1.03);
+}
+
+button {
+    width: 150px;
+    height: 50px;
+}
+
+h3 {
+    color: white;
+}
