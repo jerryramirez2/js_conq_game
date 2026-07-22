@@ -6,35 +6,10 @@ let playerContainer = document.getElementById("playerContainer");
 let deck = [];
 let playerDeck = [];
 let oppDeck = [];
-const START_COUNT = 8;
 
 window.onload = () => {
 
     createDeck();
-    shuffleDeck();
-    startGame();
-}
-
-function startGame() {
-
-    for (let i = 0; i < START_COUNT; i++) {
-        playerDeck.push(deck.pop());
-        oppDeck.push(deck.pop());
-    }
-
-    console.log(playerDeck)
-    console.log(oppDeck)
-    console.log(deck);
-}
-
-function shuffleDeck() {
-
-    for (let i = 0; i < deck.length; i++) {
-        let j = Math.floor(Math.random() * deck.length);
-        let temp = deck[i];
-        deck[i] = deck[j];
-        deck[j] = temp;
-    }
 }
 
 function createDeck() {
@@ -45,7 +20,7 @@ function createDeck() {
     for (let i = 0; i < type.length; i++) {
         for (let j = 0; j < value.length; j++) {
             let card = `${value[j]}-${type[i]}`;
-            deck.push(card);
+            console.log(card)
         }
     }
 }
