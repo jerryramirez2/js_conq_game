@@ -11,8 +11,10 @@ let oppDeck = [];
 const START_COUNT = 8;
 let isTrading = true;
 let isChoosing = false;
+let isCommitting = false;
 let isOppTurn = false;
 let isPuttingOneDown = false;
+let currCard;
 
 window.onload = () => {
 
@@ -41,12 +43,39 @@ function startGame() {
         currCardImg.className = "cards";
         opponentContainer.appendChild(currCardImg);
     }
+
+    let currCardImg = document.createElement("img");
+    currCard = deck.pop();
+    currCardImg.src = `./cards/${currCard}.png`
+    currCardImg.id = currCard;
+    currCardContainer.appendChild(currCardImg);
 }
 
 function cardFunctionality() {
 
-    if (isChoosing) {
+    if (isTrading) {
+        //choose the card and generate random
+        let randInt = Math.floor(Math.random() * oppDeck.length);
+        let oppCard = oppDeck[randInt];
+        let playerCard = this.id;
         
+        let index = playerDeck.indexOf(playerCard);
+        
+        //swap src and ids for card and in array
+        let playerCardNode = document.getElementById(playerCard);
+        let oppCardNode = document.getElementById(oppCard);
+        playerCardNode.id = oppCardNode.id;
+        playerCardNode.src = `./cards/${playerCardNode.id}.png`; 
+        oppCardNode.id = playerCard;
+
+        playerDeck[index] = oppCard;
+        oppDeck[randInt] = playerCard;
+
+        isTrading = false;
+        isCommitting = true;
+
+        console.log(playerDeck)
+        console.log(oppDeck)
     }
 }
 
