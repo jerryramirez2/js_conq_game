@@ -1,7 +1,21 @@
 
-let arr = ['1-C','4-H'];
+let oppDeck = ['1-S','1-D','4-H','5-H','3-D','6-H','10-H','4-C'];
+let valueArray = [];
+let typeArray = [];
 
-let id = '1-C';
+for (let i = 0; i < oppDeck.length; i++) {
 
-let index = arr.indexOf('1-C');
-console.log(index);
+    let card = oppDeck[i].split("-");
+    let currValue = card[0];
+    let currType = card[1];
+
+    valueArray.push(currValue);
+    typeArray.push(currType);
+}
+
+findNumbersInOrder(valueArray);
+
+function findNumbersInOrder(arr) {
+    
+    
+}

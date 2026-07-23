@@ -9,9 +9,11 @@ let deck = [];
 let playerDeck = [];
 let oppDeck = [];
 const START_COUNT = 8;
+
+//Game functions and booleans
 let isTrading = true;
-let isChoosing = false;
 let isCommitting = false;
+let isTaking = false;
 let isOppTurn = false;
 let isPuttingOneDown = false;
 let currCard;
@@ -58,6 +60,9 @@ function cardFunctionality() {
         let randInt = Math.floor(Math.random() * oppDeck.length);
         let oppCard = oppDeck[randInt];
         let playerCard = this.id;
+
+        //TESTING FINDING THE BEST CARD TO SWITCH WITH ALGORITHM
+        let leastValuableCard = findLeastValCard(oppDeck); 
         
         let index = playerDeck.indexOf(playerCard);
         
@@ -72,11 +77,32 @@ function cardFunctionality() {
         oppDeck[randInt] = playerCard;
 
         isTrading = false;
-        isCommitting = true;
+        isCommitting = false;
 
+        console.log("This is the player deck ->")
         console.log(playerDeck)
+        console.log("This is the oppDeck ->")
         console.log(oppDeck)
     }
+}
+
+//Finds the most useless card in the beginning of the game to switch
+function findLeastValCard(deck) {
+
+    let valDeck = [];
+    let typeDeck = [];
+
+    for (let i = 0; i < deck.length; i++) {
+        
+        let currCard = deck[i].split("-");
+        let currValue = currCard[0];
+        let currType = currCard[1];
+        
+        valDeck.push(currValue);
+        typeDeck.push(currType);
+    }
+
+    return null;
 }
 
 function shuffleDeck() {
