@@ -1,19 +1,21 @@
 
-let arr = ['3-H','10-C','5-S','A-D','7-S','10-C','5-H','K-D'];
-arr = [3,10,5,1,1,10,5,12];
+let arr = ['10-H','10-C','A-S','A-D','7-S','10-C','Q-H','K-D'];
 
 function sortValues(arr) {
     for (let i = 0; i < arr.length; i++) {
-        let currSmallest = arr[i];
+        let card = arr[i].split("-");
+        let currSmallest = getValue(card[0]);
         let index = i;
         for (let j = i + 1; j < arr.length; j++) {
-            if (currSmallest > arr[j]) {
-                currSmallest = arr[j];
+            let card = arr[j].split("-");
+            let currValue = getValue(card[0]);
+            if (currSmallest > currValue) {
+                currSmallest = currValue; 
                 index = j;
             }
         }
         let temp = arr[i];
-        arr[i] = currSmallest;
+        arr[i] = arr[index];
         arr[index] = temp;
     }
     return arr;
