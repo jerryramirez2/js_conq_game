@@ -1,21 +1,38 @@
 
-let oppDeck = ['1-S','1-D','4-H','5-H','3-D','6-H','10-H','4-C'];
-let valueArray = [];
-let typeArray = [];
+let arr = ['3-H','10-C','5-S','A-D','7-S','10-C','5-H','K-D'];
+arr = [3,10,5,1,1,10,5,12];
 
-for (let i = 0; i < oppDeck.length; i++) {
-
-    let card = oppDeck[i].split("-");
-    let currValue = card[0];
-    let currType = card[1];
-
-    valueArray.push(currValue);
-    typeArray.push(currType);
+function sortValues(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let currSmallest = arr[i];
+        let index = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (currSmallest > arr[j]) {
+                currSmallest = arr[j];
+                index = j;
+            }
+        }
+        let temp = arr[i];
+        arr[i] = currSmallest;
+        arr[index] = temp;
+    }
+    return arr;
 }
 
-findNumbersInOrder(valueArray);
+console.log(sortValues(arr))
 
-function findNumbersInOrder(arr) {
-    
-    
+function getValue(a) {
+
+    if (a == 'K') {
+        return 12;
+    }
+    else if (a == 'Q') {
+        return 11;
+    }
+    else if (a == 'A') {
+        return 1;
+    }
+    else {
+        return parseInt(a);
+    }
 }

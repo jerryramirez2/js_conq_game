@@ -91,18 +91,45 @@ function findLeastValCard(deck) {
 
     let valDeck = [];
     let typeDeck = [];
+    let hasSameNumbers = false;
+    let hasSequence = false;
 
     for (let i = 0; i < deck.length; i++) {
         
         let currCard = deck[i].split("-");
         let currValue = currCard[0];
+        let val = getValue(currValue);
         let currType = currCard[1];
         
-        valDeck.push(currValue);
+        valDeck.push(val);
         typeDeck.push(currType);
     }
 
+    hasSameNumbers = findOrder(valDeck);
+
     return null;
+}
+
+function getValue(a) {
+
+    if (a == 'K') {
+        return 12;
+    }
+    else if (a == 'Q') {
+        return 11;
+    }
+    else {
+        return parseInt(a);
+    }
+}
+
+function findOrder(arr) {
+    
+    for (let i = 0; i < arr.length; i++) {
+           
+    }
+
+    return false;
 }
 
 function shuffleDeck() {
