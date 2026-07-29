@@ -1,7 +1,7 @@
 
-let arr = ['10-H','10-C','A-S','A-D','7-S','10-C','Q-H','K-D'];
+let arr = ['10-H','6-S','A-S','A-D','7-S','10-S','K-D','Q-S'];
 
-function sortValues(arr) {
+function sortCards(arr) {
     for (let i = 0; i < arr.length; i++) {
         let card = arr[i].split("-");
         let currSmallest = getValue(card[0]);
@@ -21,7 +21,44 @@ function sortValues(arr) {
     return arr;
 }
 
-console.log(sortValues(arr))
+function findPossibleMatches(arr) {
+    
+    let matches = [];
+    let currMatch = [];
+    let isInside = false;
+
+    //try to find all available same numbers 
+    for (let i = 0; i < arr.length - 1; i++) {
+        let card = arr[i].split("-");
+        let value = getValue(card[0]);
+        let secondCard = arr[i + 1].split("-");
+        let secondValue = getValue(secondCard[0]);
+        
+        //CHECK IF THE NUMBERS ARE THE SAME 
+        if (value === secondValue) {
+            if (!isInside) {
+                currMatch.push(arr[i]);
+                currMatch.push(arr[i + 1]);
+                isInside = true;
+            }
+            else {
+                currMatch.push(arr[i + 1]);
+            }
+        }
+        else {
+            if (currMatch.length != 0) {
+                matches.push(currMatch);
+            }
+            currMatch = [];
+            isInside = false;
+        }
+    }
+
+    return matches;
+}
+
+let sortedArr = sortCards(arr);
+console.log(sortedArr);
 
 function getValue(a) {
 
