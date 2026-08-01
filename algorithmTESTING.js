@@ -1,6 +1,4 @@
 
-let arr = ['10-H','6-S','A-S','A-D','7-S','10-S','K-D','Q-S'];
-
 function sortCards(arr) {
     for (let i = 0; i < arr.length; i++) {
         let card = arr[i].split("-");
@@ -21,7 +19,7 @@ function sortCards(arr) {
     return arr;
 }
 
-function findPossibleMatches(arr) {
+function findSameNumberMatches(arr) {
     
     let matches = [];
     let currMatch = [];
@@ -53,12 +51,38 @@ function findPossibleMatches(arr) {
             isInside = false;
         }
     }
-
     return matches;
 }
 
-let sortedArr = sortCards(arr);
-console.log(sortedArr);
+function findSequence(arr) {
+    
+    let arrays = [];
+    arrays.push([arr[0]]);
+    
+    for (let i = 1; i < arr.length; i++) {
+        let currCard = arr[i].split("-");
+        let currType = currCard[1];
+        
+        const SIZE = arrays.length;
+        let hasMatch = false;
+
+        for (let r = 0; r < SIZE; r++) {
+            let card = arrays[r][0].split("-");
+            let type = card[1];
+             
+            if (currType === type) {
+                arrays[r].push(arr[i]);
+                hasMatch = true;
+                break;
+            } 
+        }
+        
+        if (!hasMatch){
+            arrays.push([arr[i]]);
+        }
+    }
+    console.log(arrays)
+}
 
 function getValue(a) {
 
@@ -75,3 +99,10 @@ function getValue(a) {
         return parseInt(a);
     }
 }
+
+let arr = ['10-H','7-C','A-S','A-D','7-S','10-S','K-D','Q-S'];
+let sortedArr = sortCards(arr);
+findSequence(sortedArr)
+
+
+
